@@ -1,0 +1,43 @@
+<h1 class="text-center py-5">Users:</h1>
+
+<div class="container">
+    <div class="row px-5">
+        <div class="col">
+            <div id="loading" style="display: none;">
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <div id="users-list"></div>
+        </div>
+    </div>
+    <button id="reload-button" class="btn btn-primary">Reload</button>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("reload-button").addEventListener("click", function() {
+      const loadingIndicator = document.getElementById("loading");
+      const usersList = document.getElementById("users-list");
+      loadingIndicator.style.display = "block";
+      usersList.innerHTML = "";
+
+      fetch("/users.json")
+        .then(response => response.json())
+        .then(data => {
+          loadingIndicator.style.display = "none";
+
+          data.forEach(user => {
+            const userDiv = document.createElement("div");
+            userDiv.classList.add("list-group-item");
+            userDiv.innerHTML = `Name: ${user.name}`;
+            usersList.appendChild(userDiv);
+          });
+        });
+    });
+  });
+
+
+
+
+</script>

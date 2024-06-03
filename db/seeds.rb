@@ -7,3 +7,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+User.delete_all
+
+User.create name: "Chiara Romanini"
+User.create name: "Vicente Giaconi"
+User.create name: "Fabian Saavedra"
